@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import draggable from 'vuedraggable';
 
 const songs = ref([
@@ -64,6 +64,16 @@ const checkMove = (evt) => {
   dragOverIndex.value = evt.relatedContext.index;
   return true;
 };
+
+const resultMessage = computed(() => {
+  if (correctCount.value === 0) return "Oh no!";
+  if (correctCount.value <= 3) return "Good try!";
+  if (correctCount.value <= 6) return "Pretty good!";
+  if (correctCount.value <= 8) return "Very impressive!";
+  if (correctCount.value === 9) return "Holy cow!";
+  if (correctCount.value === 10) return "You were perfect!";
+  return "Good job!";
+});
 </script>
 
 <template>
@@ -93,7 +103,8 @@ const checkMove = (evt) => {
               class="submit-button">Submit</button>
     </div>
     <div v-else>
-      <p>Good job! You got {{ correctCount }} correct.</p>
+      <p>{{ resultMessage }}</p>
+      <p>You got {{ correctCount }} correct.</p>
       <ul>
         <li v-for="position in correctPositions"
             :key="position">{{ position }}</li>
