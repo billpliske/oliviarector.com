@@ -20,10 +20,10 @@ const shuffledSongs = ref([]);
 const isSubmitted = ref(false);
 const correctCount = ref(0);
 const correctPositions = ref([]);
+const dragOverIndex = ref(null);
 
 onMounted(() => {
   shuffledSongs.value = [...songs.value].sort(() => Math.random() - 0.5);
-  // Debugging: Log the shuffledSongs array to ensure it is populated correctly
   console.log('shuffledSongs:', shuffledSongs.value);
 });
 
@@ -47,6 +47,23 @@ const handleTryAgain = () => {
   correctCount.value = 0;
   correctPositions.value = [];
 };
+
+const onDragStart = () => {
+  dragOverIndex.value = null;
+};
+
+const onDragEnd = () => {
+  dragOverIndex.value = null;
+};
+
+const onDragOver = (event) => {
+  dragOverIndex.value = event.newIndex;
+};
+
+const checkMove = (evt) => {
+  dragOverIndex.value = evt.relatedContext.index;
+  return true;
+};
 </script>
 
 <template>
@@ -54,9 +71,15 @@ const handleTryAgain = () => {
     <h1>Top 10 Songs</h1>
     <div v-if="!isSubmitted">
       <draggable v-model="shuffledSongs"
-                 class="grid">
+                 class="grid"
+                 ghost-class="ghost"
+                 :move="checkMove"
+                 @start="onDragStart"
+                 @end="onDragEnd"
+                 @change="onDragOver">
         <template #item="{ element, index }">
-          <div class="grid-item">
+          <div :class="['grid-item', { 'drag-over': dragOverIndex === index }]"
+               :style="{ order: Math.floor(index / 5) + (index % 5) * 2 }">
             <div class="number">{{ index + 1 }}</div>
             <div class="draggable-item">
               <img :src="element.imageUrl"
@@ -81,7 +104,7 @@ const handleTryAgain = () => {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -91,19 +114,28 @@ const handleTryAgain = () => {
 }
 
 .grid {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 600px;
 }
 
 .grid-item {
   display: flex;
   align-items: center;
   height: 50px;
-  width: 100%;
   border: 1px solid #ccc;
-  margin: 5px 0;
   padding: 0 10px;
+  transition: background-color 0.3s ease;
+}
+
+.grid-item.drag-over {
+  background-color: rgba(0, 123, 255, 0.5);
+}
+
+.ghost {
+  opacity: 0.4;
 }
 
 .number {
@@ -129,4 +161,5 @@ const handleTryAgain = () => {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-}</style>
+}
+</style>
