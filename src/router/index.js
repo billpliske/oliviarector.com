@@ -4,7 +4,7 @@ import Birthday from '../views/Birthday.vue'
 import Quiz from '../views/Quiz.vue'
 import Scramble from '../views/Scramble.vue'
 import Sour from '../views/Sour.vue'
-import Tour from '../views/Tour.vue'
+import Top10 from '../views/Top10.vue'
 import Videos from '../views/Videos.vue'
 
 const layoutId = document.getElementById('outerwrapper')
@@ -49,10 +49,10 @@ const router = createRouter({
     },
     ,
     {
-      path: '/tour',
-      name: 'tour',
+      path: '/top10',
+      name: 'top10',
       props: true,
-      component: Tour,
+      component: Top10,
     },
     ,
     {

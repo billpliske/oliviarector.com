@@ -28,8 +28,8 @@ const store = useStore();
                     @click="store.toggleMenu()">Sour</RouterLink>
         <RouterLink to="/videos"
                     @click="store.toggleMenu()">Videos</RouterLink>
-        <RouterLink to="/tour"
-                    @click="store.toggleMenu()">Tour</RouterLink>
+        <RouterLink to="/top10"
+                    @click="store.toggleMenu()">Top 10</RouterLink>
         <RouterLink to="/birthday"
                     @click="store.toggleMenu()">Birthday</RouterLink>
 
