@@ -5,7 +5,7 @@ import outputs from "../amplify_outputs.json";
 import { createPinia } from 'pinia'
 import piniaPersist from 'pinia-plugin-persist'
 import router from './router'
-import '@fontsource-variable/open-sans';
+import '@fontsource-variable/open-sans/wdth.css';
 
 
 Amplify.configure(outputs);
