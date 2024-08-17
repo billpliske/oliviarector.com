@@ -33,13 +33,49 @@ const store = useStore();
         <RouterLink to="/birthday"
                     @click="store.toggleMenu()">Birthday</RouterLink>
 
-        <div class="others">
-          <a href="https://www.facebook.com/groups/299884429195291/"
-             target="new">
-            <Icon icon="ic:baseline-facebook"
-                  class="fb-icon" />1
-          </a>
-        </div>
+        <ul class="other">
+          <p>Previous birthdays</p>
+          <li>
+            <a href="https://1.oliviarector.com"
+               target="_blank"
+               @click="store.toggleMenu()">1</a>
+          </li>
+          <li>
+            <a href="https://2.oliviarector.com"
+               target="_blank"
+               @click="store.toggleMenu()">2</a>
+          </li>
+          <li>
+            <a href="https://3.oliviarector.com"
+               target="_blank"
+               @click="store.toggleMenu()">3</a>
+          </li>
+          <li>
+            <a href="https://4.oliviarector.com"
+               target="_blank"
+               @click="store.toggleMenu()">4</a>
+          </li>
+          <li>
+            <a href="https://5.oliviarector.com"
+               target="_blank"
+               @click="store.toggleMenu()">5</a>
+          </li>
+          <li>
+            <a href="https://6.oliviarector.com"
+               target="_blank"
+               @click="store.toggleMenu()">6</a>
+          </li>
+          <li>
+            <a href="https://7.oliviarector.com"
+               target="_blank"
+               @click="store.toggleMenu()">7</a>
+          </li>
+          <li>
+            <a href="https://8.oliviarector.com"
+               target="_blank"
+               @click="store.toggleMenu()">8</a>
+          </li>
+        </ul>
 
       </div>
     </div>
@@ -82,16 +118,6 @@ const store = useStore();
     margin: 0;
   }
 
-  li {
-    background-color: var(--purple);
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
-    margin-bottom: 20px;
-    padding: 0px;
-
-    &:first-of-type {
-      border-top: none;
-    }
-  }
 
   a {
     color: white;
@@ -136,14 +162,37 @@ const store = useStore();
   top: 5px;
 }
 
-.others {
+.other {
   margin-top: 40px;
+  padding: 10px 30px 5px 30px;
+
+
+  p {
+    font-size: 20px;
+    font-variation-settings: "wdth" 100, "wght" 700;
+    font-style: italic;
+  }
 
   a {
     font-size: 30px;
   }
-}
-</style>
+
+  li {
+    background-color: var(--purple);
+    margin: 10px 20px 20px 0;
+    padding: 0px;
+    list-style-type: none;
+    display: inline-block;
+    background-color: black;
+    border-radius: 50%;
+
+
+    &:first-of-type {
+      border-top: none;
+    }
+  }
+
+}</style>
 
 
 
