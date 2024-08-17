@@ -1,9 +1,12 @@
 <script setup>
-import { RouterView } from 'vue-router';
+import { RouterView, useRoute } from 'vue-router';
 import Nav from '@/components/Nav.vue';
 import Header from '@/components/Header.vue';
 import { useRouter } from 'vue-router'
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+
+const route = useRoute();
+const isHomeRoute = computed(() => route.name === 'home');
 
 document.documentElement.style.setProperty('--vh', `${window.innerHeight / 100}px`);
 function setDocHeight() {
@@ -31,7 +34,7 @@ const scrollTop = () => {
   <div id="outerwrapper"
        class="outer-wrapper container">
     <Nav />
-    <Header />
+    <Header v-if="!isHomeRoute" />
     <router-view v-slot="{ Component }">
       <transition @before-enter="scrollTop"
                   mode="out-in"

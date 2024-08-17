@@ -30,8 +30,7 @@ const store = useStore();
                     @click="store.toggleMenu()">Videos</RouterLink>
         <RouterLink to="/top10"
                     @click="store.toggleMenu()">Top 10</RouterLink>
-        <RouterLink to="/birthday"
-                    @click="store.toggleMenu()">Birthday</RouterLink>
+
 
         <ul class="other">
           <p>Previous birthdays</p>
@@ -84,7 +83,7 @@ const store = useStore();
 
 <style lang="scss" scoped>
 .menu-wrapper {
-  background: rgb(65 149 86 / 90%);
+  background: #3d0385;
   bottom: 0px;
   position: fixed;
   overflow: hidden;
@@ -143,9 +142,10 @@ const store = useStore();
 }
 
 .close-wrapper {
-  right: 50px;
   height: 40px;
   position: absolute;
+  right: 30px;
+  top: 25px;
   width: 40px;
   z-index: 4;
 }
@@ -164,6 +164,7 @@ const store = useStore();
 
 .other {
   margin-top: 40px;
+  max-width: 80%;
   padding: 10px 30px 5px 30px;
 
 
@@ -178,13 +179,19 @@ const store = useStore();
   }
 
   li {
-    background-color: var(--purple);
-    margin: 10px 20px 20px 0;
-    padding: 0px;
-    list-style-type: none;
-    display: inline-block;
     background-color: black;
     border-radius: 50%;
+    display: inline-block;
+    list-style-type: none;
+    margin: 10px 20px 20px 0;
+    padding: 0px;
+    width: 66px;
+
+    a {
+      position: relative;
+      left: -6px;
+      top: -1px;
+    }
 
 
     &:first-of-type {
@@ -192,7 +199,8 @@ const store = useStore();
     }
   }
 
-}</style>
+}
+</style>
 
 
 

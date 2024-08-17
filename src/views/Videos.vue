@@ -37,10 +37,15 @@ const videoLinks = ref([
 
 <style lang="scss" scoped>
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 20px;
+}
+
+h1 {
+  color: #514B88;
+  font-size: 40px;
+  letter-spacing: -1px;
+  line-height: 52px;
+  margin-bottom: 10px;
 }
 
 .video-grid {
