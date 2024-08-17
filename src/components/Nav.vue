@@ -83,7 +83,7 @@ const store = useStore();
 
 <style lang="scss" scoped>
 .menu-wrapper {
-  background: #3d0385;
+  background: #67636c;
   bottom: 0px;
   position: fixed;
   overflow: hidden;

@@ -4,6 +4,7 @@ import olivias from '@/assets/olivias.jpg';
 
 <template>
   <div class="wrapper-home">
+    <h1>Olivia is 10! <span>❤️</span></h1>
     <img class="olivias"
          :src="olivias"
          alt="Two Olivias" />
@@ -14,6 +15,10 @@ import olivias from '@/assets/olivias.jpg';
 .wrapper-home {
   height: 100vh;
   background-color: #464073;
+  display: grid;
+  justify-content: center;
+  align-content: end;
+  padding-bottom: 50px;
 }
 
 .olivias {
@@ -24,6 +29,14 @@ import olivias from '@/assets/olivias.jpg';
   height: 100%;
   object-fit: cover;
   object-position: top right;
+}
+
+h1 {
+  position: relative;
+  z-index: 10;
+  margin-top: 200px;
+  color: white;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, .7);
 }
 
 /******** Large screens ************/
