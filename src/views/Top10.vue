@@ -103,8 +103,8 @@ const resultMessage = computed(() => {
                  @end="onDragEnd"
                  @change="onDragOver">
         <template #item="{ element, index }">
-          <div :class="['grid-item', { 'drag-over': dragOverIndex === index }]"
-               :style="{ order: Math.floor(index / 5) + (index % 5) * 2 }">
+
+          <div :class="['grid-item', { 'drag-over': dragOverIndex === index }]">
             <div class="number">{{ index + 1 }}</div>
             <div class="draggable-item">
               <img :src="element.imageUrl"
