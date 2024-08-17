@@ -94,7 +94,7 @@ const resultMessage = computed(() => {
            alt="Spotify logo" />
     </div>
     <div v-if="!isSubmitted">
-      <p class="intro">Try to drag songs into the right order.</p>
+      <p class="intro">Fix the song order! Just drag & submit.</p>
       <draggable v-model="shuffledSongs"
                  class="grid"
                  ghost-class="ghost"
@@ -134,8 +134,9 @@ const resultMessage = computed(() => {
 <style scoped lang="scss">
 .wrapper {
   display: block;
-  height: 100vh;
-  margin-top: 55px;
+  font-family: 'Open Sans Variable', sans-serif;
+  height: calc(100vh - 70px);
+  margin-top: 70px;
   padding: 20px;
 
   div {
@@ -147,7 +148,7 @@ const resultMessage = computed(() => {
 .headline {
   font-family: 'Open Sans Variable', sans-serif;
   font-weight: 800;
-  font-variation-settings: "wdth" 75, "wght" 800;
+  font-variation-settings: "wdth" 100, "wght" 800;
   text-transform: uppercase;
   letter-spacing: -1px;
   line-height: 26px;
@@ -201,15 +202,15 @@ const resultMessage = computed(() => {
 }
 
 .intro {
-  color: #6d63cb;
+  color: #7165e6;
   font-size: 17px;
   font-weight: 500;
-  font-variation-settings: "wdth" 100, "wght" 500;
+  font-variation-settings: "wdth" 75, "wght" 500;
   letter-spacing: 1px;
-  line-height: 29px;
+  line-height: 21px;
   margin-bottom: 10px;
   position: relative;
-  top: -10px;
+  top: 0px;
 }
 
 .grid {
@@ -248,13 +249,14 @@ const resultMessage = computed(() => {
 }
 
 .draggable-item {
-  display: flex;
   align-items: center;
-  height: 50px;
-  margin-left: 10px;
+  display: flex;
   font-size: 20px;
-  font-weight: 700;
   font-variation-settings: "wdth" 100, "wght" 700;
+  font-weight: 700;
+  height: 50px;
+  line-height: 25px;
+  margin-left: 10px;
 
   &:hover {
     cursor: grab;
@@ -267,17 +269,6 @@ const resultMessage = computed(() => {
   margin-right: 10px;
 }
 
-.submit-button {
-  margin-top: 30px;
-  padding: 15px 40px;
-  border: 2px solid #514B88;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: transparent;
-  color: white;
-  font-weight: 700;
-  font-variation-settings: "wdth" 95, "wght" 700
-}
 
 .result {
   font-size: 20px;
@@ -304,11 +295,11 @@ const resultMessage = computed(() => {
 
 /******** Large screens ************/
 
-@media (min-width: 450px) {
+@media (min-width: 821px) {
   .wrapper {
     display: grid;
     grid-template-columns: 400px 1fr;
-    margin-top: 100px;
+    margin-top: 70px;
     max-width: 1200px;
   }
 
@@ -317,9 +308,6 @@ const resultMessage = computed(() => {
   }
 
   .headline {
-    font-family: 'Open Sans Variable', sans-serif;
-    font-weight: 800;
-    font-variation-settings: "wdth" 75, "wght" 800;
     text-transform: normal;
     letter-spacing: -1px;
     line-height: 60px;
@@ -352,9 +340,7 @@ const resultMessage = computed(() => {
 
     h5 {
       display: block;
-      font-size: 16px;
-      font-weight: 500;
-      font-variation-settings: "wdth" 75, "wght" 500;
+      font-variation-settings: "wdth" 95, "wght" 500;
       letter-spacing: 7px;
       line-height: 6px;
       margin: 9px 0 0 6px;
@@ -368,6 +354,8 @@ const resultMessage = computed(() => {
   }
 
   .intro {
+    font-size: 18px;
+    font-variation-settings: "wdth" 95, "wght" 500;
     margin: 10px 0;
     top: 0px;
   }
