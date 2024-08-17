@@ -164,7 +164,7 @@ const store = useStore();
 
 .other {
   margin-top: 40px;
-  max-width: 80%;
+  max-width: 90%;
   padding: 10px 30px 5px 30px;
 
 
