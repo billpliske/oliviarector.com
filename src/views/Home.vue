@@ -18,7 +18,7 @@ import olivias from '@/assets/olivias.jpg';
   display: grid;
   justify-content: center;
   align-content: end;
-  padding-bottom: 50px;
+  padding-bottom: 80px;
 }
 
 .olivias {
