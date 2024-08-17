@@ -116,7 +116,7 @@ const handleTryAgain = () => {
 }
 
 h1 {
-  font-size: 45px;
+  font-size: 40px;
   letter-spacing: -1px;
   line-height: 52px;
 }

@@ -3,26 +3,16 @@ import { ref, onMounted } from 'vue';
 
 // Define 20 questions about states and their capitals
 const questions = [
-  { question: "What is the capital of Alabama?", options: ["Montgomery", "Juneau", "Phoenix", "Little Rock"], answer: "Montgomery" },
-  { question: "What is the capital of Alaska?", options: ["Juneau", "Montgomery", "Phoenix", "Little Rock"], answer: "Juneau" },
-  { question: "What is the capital of Arizona?", options: ["Phoenix", "Montgomery", "Juneau", "Little Rock"], answer: "Phoenix" },
-  { question: "What is the capital of Arkansas?", options: ["Little Rock", "Montgomery", "Juneau", "Phoenix"], answer: "Little Rock" },
-  { question: "What is the capital of California?", options: ["Sacramento", "Montgomery", "Juneau", "Phoenix"], answer: "Sacramento" },
-  { question: "What is the capital of Colorado?", options: ["Denver", "Montgomery", "Juneau", "Phoenix"], answer: "Denver" },
-  { question: "What is the capital of Connecticut?", options: ["Hartford", "Montgomery", "Juneau", "Phoenix"], answer: "Hartford" },
-  { question: "What is the capital of Delaware?", options: ["Dover", "Montgomery", "Juneau", "Phoenix"], answer: "Dover" },
-  { question: "What is the capital of Florida?", options: ["Tallahassee", "Montgomery", "Juneau", "Phoenix"], answer: "Tallahassee" },
-  { question: "What is the capital of Georgia?", options: ["Atlanta", "Montgomery", "Juneau", "Phoenix"], answer: "Atlanta" },
-  { question: "What is the capital of Hawaii?", options: ["Honolulu", "Montgomery", "Juneau", "Phoenix"], answer: "Honolulu" },
-  { question: "What is the capital of Idaho?", options: ["Boise", "Montgomery", "Juneau", "Phoenix"], answer: "Boise" },
-  { question: "What is the capital of Illinois?", options: ["Springfield", "Montgomery", "Juneau", "Phoenix"], answer: "Springfield" },
-  { question: "What is the capital of Indiana?", options: ["Indianapolis", "Montgomery", "Juneau", "Phoenix"], answer: "Indianapolis" },
-  { question: "What is the capital of Iowa?", options: ["Des Moines", "Montgomery", "Juneau", "Phoenix"], answer: "Des Moines" },
-  { question: "What is the capital of Kansas?", options: ["Topeka", "Montgomery", "Juneau", "Phoenix"], answer: "Topeka" },
-  { question: "What is the capital of Kentucky?", options: ["Frankfort", "Montgomery", "Juneau", "Phoenix"], answer: "Frankfort" },
-  { question: "What is the capital of Louisiana?", options: ["Baton Rouge", "Montgomery", "Juneau", "Phoenix"], answer: "Baton Rouge" },
-  { question: "What is the capital of Maine?", options: ["Augusta", "Montgomery", "Juneau", "Phoenix"], answer: "Augusta" },
-  { question: "What is the capital of Maryland?", options: ["Annapolis", "Montgomery", "Juneau", "Phoenix"], answer: "Annapolis" }
+  { question: "What was the first Disney show she appeared in?", options: ["High School Musical", "Bizaardvark", "KC Undercover", "Fast Layne"], answer: "Bizaardvark" },
+  { question: "When is Olivia's birthday?", options: ["February 24, 2004", "February 20, 2003", "March 12, 2003", "October 12, 2002"], answer: "February 20, 2003" },
+  { question: "What's her middle name?", options: ["Madison", "Lee", "Isabel", "Jade"], answer: "Isabel" },
+  { question: "What was the first song she released?", options: ["good 4 u", "deja vu", "drivers license", "brutal"], answer: "drivers license" },
+  { question: "What was her character's name in High School Musical?", options: ["Jessica", "Nini", "Chandler", "Annabelle"], answer: "Nini" },
+  { question: "The first time Olivia was on TV, it was for:", options: ["performing at the state fair", "a commercial for Sour Patch Kids", "a Disney TV show", "an old Navy commercial"], answer: "an old Navy commercial" },
+  { question: "In what state did Olivia grow up?", options: ["California", "Arizona", "Colorado", "Pennsylvania"], answer: "California" },
+  { question: "What was the second song she released from the 'Sour' album?", options: ["deja vu", "good 4 u", "drivers license", "vampire"], answer: "deja vu" },
+  { question: "How many Grammy Awards did she win in 2022?", options: ["1", "5", "2", "3"], answer: "3. Best New Artist, Best Pop Vocal Album, and Best Pop Solo Performance" },
+  { question: "What was the first single she released from the album 'Guts'?", options: ["bad idea right?", "lacy", "get him back", "vampire"], answer: "vampire" },
 ];
 
 // State variables
@@ -30,6 +20,7 @@ const selectedQuestions = ref([]);
 const userAnswers = ref(Array(10).fill(null));
 const resultMessage = ref('');
 const quizSubmitted = ref(false);
+const correctAnswers = ref([]);
 
 // Function to randomly select 10 questions
 const getRandomQuestions = () => {
@@ -45,9 +36,11 @@ onMounted(() => {
 // Function to check the answers
 const checkAnswers = () => {
   let correctCount = 0;
+  correctAnswers.value = [];
   selectedQuestions.value.forEach((question, index) => {
     if (userAnswers.value[index] === question.answer) {
       correctCount++;
+      correctAnswers.value.push({ number: index + 1, question: question.question, answer: question.answer });
     }
   });
   resultMessage.value = `You got <span class="correct-count">${correctCount}</span> out of 10 correct.`;
@@ -60,19 +53,21 @@ const resetQuiz = () => {
   userAnswers.value = Array(10).fill(null);
   resultMessage.value = '';
   quizSubmitted.value = false;
+  correctAnswers.value = [];
 };
 </script>
 
 <template>
   <div class="wrapper">
-    <h1>Quiz</h1>
+    <h1 v-if="!quizSubmitted">Quiz</h1>
     <form @submit.prevent="checkAnswers"
           v-if="!quizSubmitted">
       <div v-for="(question, index) in selectedQuestions"
            :key="index"
            class="question">
         <p>{{ index + 1 }}. {{ question.question }}</p>
-        <div v-for="option in question.options"
+        <div class="options"
+             v-for="option in question.options"
              :key="option">
           <label>
             <input type="radio"
@@ -83,26 +78,52 @@ const resetQuiz = () => {
           </label>
         </div>
       </div>
-      <button type="submit">Submit</button>
+      <button class="submit-button"
+              type="submit">Submit</button>
     </form>
     <div v-else>
       <div class="result-message"
            v-html="resultMessage"></div>
-      <button @click="resetQuiz">Try Again</button>
+      <div class="correct-answers">
+        <h2>Correct Answers:</h2>
+        <ul>
+          <li v-for="answer in correctAnswers"
+              :key="answer.number">
+            {{ answer.number }}. {{ answer.question }} - <strong>{{ answer.answer }}</strong>
+          </li>
+        </ul>
+      </div>
+      <button class="submit-button"
+              @click="resetQuiz">Try Again</button>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 20px;
 }
 
+h1 {
+  color: #514B88;
+  font-size: 40px;
+  letter-spacing: -1px;
+  line-height: 52px;
+  margin-bottom: 10px;
+}
+
 .question {
-  margin-bottom: 20px;
+  p {
+    font-size: 20px;
+    font-variation-settings: "wdth" 100, "wght" 700;
+    margin: 20px 0 10px 0;
+    line-height: 25px;
+  }
+}
+
+.options {
+  font-size: 16px;
+
 }
 
 .result-message {
@@ -113,4 +134,30 @@ const resetQuiz = () => {
 .correct-count {
   font-weight: bold;
   color: green;
-}</style>
+}
+
+.result-message {
+  color: #514B88;
+  font-size: 30px;
+  font-variation-settings: "wdth" 100, "wght" 700;
+  line-height: 34px;
+}
+
+strong {
+  color: #514B88;
+  font-variation-settings: "wdth" 100, "wght" 700;
+}
+
+.submit-button {
+  margin: 30px 0;
+}
+
+/******** Large screens ************/
+
+@media (min-width: 821px) {
+
+  .wrapper {
+    padding: 40px;
+  }
+}
+</style>

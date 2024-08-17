@@ -293,6 +293,10 @@ const resultMessage = computed(() => {
   margin-top: 20px;
 }
 
+.submit-button {
+  margin-top: 20px;
+}
+
 /******** Large screens ************/
 
 @media (min-width: 821px) {
