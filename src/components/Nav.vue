@@ -78,7 +78,7 @@ const store = useStore();
 
   .itemwrapper {
     list-style-type: none;
-    padding: 100px 0px 20px 0px;
+    padding: 55px 0px 20px 0px;
     margin: 0;
   }
 
@@ -95,12 +95,12 @@ const store = useStore();
 
   a {
     color: white;
-    font-family: 'Metropolis', sans-serif;
-    font-size: 40px;
+    font-family: 'Open Sans Variable', sans-serif;
+    font-size: 30px;
     width: 100%;
     height: 100%;
     display: block;
-    padding: 10px 30px 20px 30px;
+    padding: 10px 30px 5px 30px;
     font-weight: 600;
   }
 }

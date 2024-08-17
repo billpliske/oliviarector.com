@@ -1,18 +1,23 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import draggable from 'vuedraggable';
+import guts from '@/assets/guts.png'
+import gutsspilled from '@/assets/guts-spilled.png'
+import highschool from '@/assets/high-school-musical.png'
+import sour from '@/assets/sour.png'
+import spotify from '@/assets/spotify.png'
 
 const songs = ref([
-  { title: 'Song 1', imageUrl: 'https://via.placeholder.com/50', rank: 1 },
-  { title: 'Song 2', imageUrl: 'https://via.placeholder.com/50', rank: 2 },
-  { title: 'Song 3', imageUrl: 'https://via.placeholder.com/50', rank: 3 },
-  { title: 'Song 4', imageUrl: 'https://via.placeholder.com/50', rank: 4 },
-  { title: 'Song 5', imageUrl: 'https://via.placeholder.com/50', rank: 5 },
-  { title: 'Song 6', imageUrl: 'https://via.placeholder.com/50', rank: 6 },
-  { title: 'Song 7', imageUrl: 'https://via.placeholder.com/50', rank: 7 },
-  { title: 'Song 8', imageUrl: 'https://via.placeholder.com/50', rank: 8 },
-  { title: 'Song 9', imageUrl: 'https://via.placeholder.com/50', rank: 9 },
-  { title: 'Song 10', imageUrl: 'https://via.placeholder.com/50', rank: 10 },
+  { title: 'drivers license', imageUrl: sour, rank: 1 },
+  { title: 'good 4 u', imageUrl: sour, rank: 2 },
+  { title: 'deja vu', imageUrl: sour, rank: 3 },
+  { title: 'traitor', imageUrl: sour, rank: 4 },
+  { title: 'happier', imageUrl: sour, rank: 5 },
+  { title: 'favorite crime', imageUrl: sour, rank: 6 },
+  { title: 'vampire', imageUrl: guts, rank: 7 },
+  { title: 'jealousy, jealousy', imageUrl: sour, rank: 8 },
+  { title: 'All I Want', imageUrl: highschool, rank: 9 },
+  { title: 'brutal', imageUrl: sour, rank: 10 },
 ]);
 
 const shuffledSongs = ref([]);
@@ -78,8 +83,18 @@ const resultMessage = computed(() => {
 
 <template>
   <div class="wrapper">
-    <h1>Top 10 Songs</h1>
+    <div class="headline">
+      <h4>Olivia Rodrigo's</h4>
+      <h1>Top 10</h1>
+      <h3>Streamed</h3>
+      <h2>Songs</h2>
+      <h5>All-time rankings by</h5>
+      <img class="spotify"
+           :src="spotify"
+           alt="Spotify logo" />
+    </div>
     <div v-if="!isSubmitted">
+      <p class="intro">Try to drag songs into the right order.</p>
       <draggable v-model="shuffledSongs"
                  class="grid"
                  ghost-class="ghost"
@@ -102,10 +117,11 @@ const resultMessage = computed(() => {
       <button @click="handleSubmit"
               class="submit-button">Submit</button>
     </div>
-    <div v-else>
-      <p>{{ resultMessage }}</p>
+    <div class="result"
+         v-else>
+      <p class="message">{{ resultMessage }}</p>
       <p>You got {{ correctCount }} correct.</p>
-      <ul>
+      <ul class="correct">
         <li v-for="position in correctPositions"
             :key="position">{{ position }}</li>
       </ul>
@@ -117,26 +133,97 @@ const resultMessage = computed(() => {
 
 <style scoped lang="scss">
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: block;
   height: 100vh;
-  margin-top: 50px;
+  margin-top: 55px;
+  padding: 20px;
+
+  div {
+    justify-content: start;
+    align-content: start;
+  }
+}
+
+.headline {
+  font-family: 'Open Sans Variable', sans-serif;
+  font-weight: 800;
+  font-variation-settings: "wdth" 75, "wght" 800;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  line-height: 26px;
+
+  h1 {
+    display: inline-block;
+    font-size: 28px;
+    letter-spacing: -2px;
+    line-height: 26px;
+  }
+
+  h2 {
+    display: inline-block;
+    font-size: 28px;
+    letter-spacing: -3px;
+    line-height: 26px;
+    margin-left: 9px;
+  }
+
+  h3 {
+    font-size: 28px;
+    display: inline-block;
+    line-height: 26px;
+    margin-left: 9px;
+  }
+
+  h4 {
+    font-size: 21px;
+    font-weight: 300;
+    font-variation-settings: "wdth" 75, "wght" 300;
+    letter-spacing: 6px;
+    line-height: 26px;
+  }
+
+  h5 {
+    display: inline-block;
+    font-size: 15px;
+    font-variation-settings: "wdth" 75, "wght" 500;
+    font-weight: 500;
+    letter-spacing: 2px;
+    line-height: 26px;
+    margin: 0px 0 20px 0px;
+  }
+}
+
+.spotify {
+  width: 100px;
+  position: relative;
+  left: 6px;
+  top: 6px;
+}
+
+.intro {
+  color: #6d63cb;
+  font-size: 17px;
+  font-weight: 500;
+  font-variation-settings: "wdth" 100, "wght" 500;
+  letter-spacing: 1px;
+  line-height: 29px;
+  margin-bottom: 10px;
+  position: relative;
+  top: -10px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  grid-template-columns: 1fr;
+  gap: 17px;
   width: 100%;
-  max-width: 600px;
 }
 
 .grid-item {
-  display: flex;
   align-items: center;
-  height: 50px;
-  border: 1px solid #ccc;
+  background-color: #514B88;
+  display: flex;
+  height: 35px;
   padding: 0 10px;
   transition: background-color 0.3s ease;
 }
@@ -150,8 +237,14 @@ const resultMessage = computed(() => {
 }
 
 .number {
+  background-color: rgb(45, 14, 89);
+  border-radius: 50%;
+  font-size: 18px;
+  font-variation-settings: "wdth" 95, "wght" 700;
+  font-weight: 700;
+  height: 30px;
+  text-align: center;
   width: 30px;
-  text-align: left;
 }
 
 .draggable-item {
@@ -159,18 +252,154 @@ const resultMessage = computed(() => {
   align-items: center;
   height: 50px;
   margin-left: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  font-variation-settings: "wdth" 100, "wght" 700;
+
+  &:hover {
+    cursor: grab;
+  }
 }
 
 .draggable-item img {
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   margin-right: 10px;
 }
 
 .submit-button {
-  margin-top: 20px;
-  padding: 10px 20px;
+  margin-top: 30px;
+  padding: 15px 40px;
+  border: 2px solid #514B88;
   font-size: 16px;
   cursor: pointer;
+  background-color: transparent;
+  color: white;
+  font-weight: 700;
+  font-variation-settings: "wdth" 95, "wght" 700
+}
+
+.result {
+  font-size: 20px;
+  margin-top: 10px;
+  font-weight: 500;
+
+  font-variation-settings: "wdth" 95,
+  "wght" 500 p {
+    margin-bottom: 10px;
+  }
+}
+
+.message {
+  color: white;
+  font-size: 46px;
+  font-weight: 700;
+  font-variation-settings: "wdth" 95, "wght" 700;
+  line-height: 55px;
+}
+
+.correct {
+  margin-top: 20px;
+}
+
+/******** Large screens ************/
+
+@media (min-width: 450px) {
+  .wrapper {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    margin-top: 100px;
+    max-width: 1200px;
+  }
+
+  .spotify {
+    width: 245px;
+  }
+
+  .headline {
+    font-family: 'Open Sans Variable', sans-serif;
+    font-weight: 800;
+    font-variation-settings: "wdth" 75, "wght" 800;
+    text-transform: normal;
+    letter-spacing: -1px;
+    line-height: 60px;
+
+    h1 {
+      display: block;
+      font-size: 98px;
+      letter-spacing: -3px;
+      line-height: 62px;
+    }
+
+    h2 {
+      font-size: 96px;
+      letter-spacing: -3px;
+      line-height: 32px;
+    }
+
+    h3 {
+      font-size: 62px;
+      line-height: 74px;
+    }
+
+    h4 {
+      font-size: 27px;
+      font-weight: 300;
+      font-variation-settings: "wdth" 75, "wght" 300;
+      letter-spacing: 6px;
+      line-height: 45px;
+    }
+
+    h5 {
+      display: block;
+      font-size: 16px;
+      font-weight: 500;
+      font-variation-settings: "wdth" 75, "wght" 500;
+      letter-spacing: 7px;
+      line-height: 6px;
+      margin: 9px 0 0 6px;
+    }
+  }
+
+  .spotify {
+    left: 6px;
+    top: 13px;
+    width: 245px;
+  }
+
+  .intro {
+    margin: 10px 0;
+    top: 0px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 1600px;
+  }
+
+  .grid-item {
+    height: 80px;
+  }
+
+
+  .number {
+    font-size: 20px;
+    height: 35px;
+    width: 35px;
+  }
+
+  .draggable-item img {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+  }
+
+  .result {
+    padding: 50px;
+  }
+
 }
 </style>
