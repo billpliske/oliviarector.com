@@ -216,7 +216,7 @@ p {
 }
 
 .submit-button {
-  margin: 30px 0 0 10px;
+  margin: 30px 0 20px 10px;
 }
 
 /******** Large screens ************/
