@@ -46,7 +46,7 @@ h1 {
     position: fixed;
     top: 0;
     right: -85px;
-    width: calc(100% + 85px);
+    width: 100%;
     height: 100%;
     object-fit: contain;
     object-position: top right;

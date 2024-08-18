@@ -87,8 +87,7 @@ const store = useStore();
   bottom: 0px;
   position: fixed;
   overflow: hidden;
-  padding: 15px;
-  left: -100%;
+  left: -105%;
   z-index: 12;
   top: 0;
   transition: 0.3s;
@@ -132,7 +131,7 @@ const store = useStore();
 
 
 .menu-bars {
-  color: var(--icon-off);
+  color: white;
   position: fixed;
   z-index: 4;
   height: 28px;
