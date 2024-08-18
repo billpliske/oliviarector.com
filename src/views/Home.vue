@@ -28,7 +28,7 @@ import olivias from '@/assets/olivias.jpg';
   width: calc(100% + 85px);
   height: 100%;
   object-fit: cover;
-  object-position: top right;
+  object-position: top;
 }
 
 h1 {
