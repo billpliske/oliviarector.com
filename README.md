@@ -1,5 +1,9 @@
 # OliviaRector.com
 
+## Apps page
+https://us-west-1.console.aws.amazon.com/amplify/apps
+
+
 ## Quickstart
 https://docs.amplify.aws/vue/start/quickstart/
 
