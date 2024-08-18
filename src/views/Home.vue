@@ -18,7 +18,6 @@ import olivias from '@/assets/olivias.jpg';
   display: grid;
   justify-content: center;
   align-content: end;
-  padding-bottom: 80px;
 }
 
 .olivias {
@@ -34,7 +33,8 @@ import olivias from '@/assets/olivias.jpg';
 h1 {
   position: relative;
   z-index: 10;
-  margin-top: 200px;
+  margin: 0;
+  bottom: 40px;
   color: white;
   text-shadow: 2px 2px 10px rgba(0, 0, 0, .7);
 }
