@@ -34,7 +34,7 @@ h1 {
   position: relative;
   z-index: 10;
   margin: 0;
-  bottom: 40px;
+  bottom: 80px;
   color: white;
   text-shadow: 2px 2px 10px rgba(0, 0, 0, .7);
 }
