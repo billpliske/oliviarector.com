@@ -23,10 +23,7 @@ window.addEventListener('orientationchange', function () {
 setDocHeight();
 
 const scrollTop = () => {
-  const appElement = document.getElementById('app');
-  if (appElement) {
-    appElement.scrollIntoView();
-  }
+  window.scrollTo(0, 0);
 };
 </script>
 
